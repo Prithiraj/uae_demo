@@ -1,0 +1,56 @@
+name: Build business microsites
+
+on:
+  push:
+    branches: [implement-business-sites]
+    paths:
+      - '.build-business-sites'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.event.head_commit.message == 'Trigger business microsite build'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconstruct site builder
+        shell: bash
+        run: |
+          mkdir -p site-builder
+          cat site-builder/.payload/part-*.b64 | base64 --decode | gzip -dc > site-builder/build_sites.py
+          python -m py_compile site-builder/build_sites.py
+      - name: Generate all business sites
+        run: python site-builder/build_sites.py
+      - name: Validate generated output
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, re
+          root=Path('.')
+          sites=sorted(p for p in root.iterdir() if p.is_dir() and re.fullmatch(r'[A-Z0-9]{4}', p.name) and (p/'index.html').exists())
+          assert len(sites)==51, f'expected 51 sites, got {len(sites)}'
+          for d in sites:
+              text=(d/'index.html').read_text(encoding='utf-8')
+              assert '<h1>' in text, d.name
+              assert 'meta name="description"' in text, d.name
+              assert f'https://prithiraj.github.io/uae_demo/{d.name}/' in text, d.name
+              m=re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
+              assert m, f'missing JSON-LD: {d.name}'
+              json.loads(m.group(1))
+          assert (root/'assets'/'site.css').exists()
+          assert (root/'assets'/'site.js').exists()
+          assert (root/'.nojekyll').exists()
+          print(f'Validated {len(sites)} microsites')
+          PY
+      - name: Commit generated microsites
+        shell: bash
+        run: |
+          rm -rf site-builder/.payload .build-business-sites
+          git config user.name "Prithiraj"
+          git config user.email "prithirajsengupta@gmail.com"
+          git add -A
+          git commit -m "Implement 51 business microsites"
+          git push
