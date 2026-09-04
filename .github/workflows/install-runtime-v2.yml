@@ -1,0 +1,85 @@
+name: Install stunning V2 runtime
+
+on:
+  push:
+    branches: [stunning-redesign-v2]
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: stunning-redesign-v2
+          fetch-depth: 0
+
+      - name: Decode V2 production assets
+        shell: bash
+        run: |
+          base64 -d .v2-css.b64 | gzip -d > assets/v2.css
+          base64 -d .v2-js.b64 | gzip -d > assets/v2.js
+          test -s assets/v2.css
+          test -s assets/v2.js
+          node --check assets/v2.js
+
+      - name: Validate design compiler coverage
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          js=Path('assets/v2.js').read_text(encoding='utf-8')
+          css=Path('assets/v2.css').read_text(encoding='utf-8')
+          block=js.split('const families={',1)[1].split('};',1)[0]
+          pairs=re.findall(r"['\"]([A-Z0-9]{4})['\"]\s*:\s*['\"]([a-z]+)['\"]", block)
+          codes=[c for c,_ in pairs]
+          families=sorted(set(f for _,f in pairs))
+          if len(codes)!=51 or len(set(codes))!=51:
+              raise SystemExit(f'Expected 51 unique code assignments, found {len(codes)} / {len(set(codes))}')
+          expected={'cinematic','collage','editorial','graphic','catalog','neighborhood','atelier','poster','minimal','archival'}
+          if set(families)!=expected:
+              raise SystemExit(f'Architecture families mismatch: {families}')
+          for fam in expected:
+              if f'data-family="{fam}"' not in css:
+                  raise SystemExit(f'CSS missing family: {fam}')
+          required=['Generated concept artwork','not a business photograph','XF68','99FB','06AS','MA03','2ZSW']
+          for needle in required:
+              if needle not in js:
+                  raise SystemExit(f'Compiler missing: {needle}')
+          mds=list(Path('business-research').glob('*.md'))
+          if len(mds)!=51: raise SystemExit(f'Expected 51 research profiles, got {len(mds)}')
+          research_codes=[]
+          for p in mds:
+              m=re.search(r'unique_code: "([^"]+)"',p.read_text(encoding='utf-8'))
+              if not m: raise SystemExit(f'Missing code in {p}')
+              research_codes.append(m.group(1))
+          if set(research_codes)!=set(codes):
+              raise SystemExit(f'Compiler/research code mismatch: missing={set(research_codes)-set(codes)}, extra={set(codes)-set(research_codes)}')
+          missing=[c for c in codes if not Path(c,'index.html').is_file()]
+          if missing: raise SystemExit(f'Missing routes: {missing}')
+          print('Validated 51 businesses across 10 distinct design architectures.')
+          PY
+
+      - name: Attach V2 compiler to shared runtime
+        shell: bash
+        run: |
+          if ! grep -q 'STUNNING_V2_LOADER' assets/site.js; then
+            cat >> assets/site.js <<'JS'
+
+/* STUNNING_V2_LOADER */
+(()=>{const s=document.createElement('script');s.src='../assets/v2.js';s.async=false;document.head.appendChild(s)})();
+JS
+          fi
+
+      - name: Commit production assets only
+        shell: bash
+        run: |
+          rm -f .v2-css.b64 .v2-js.b64 .github/workflows/install-runtime-v2.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Add distinct runtime design identities to 51 microsites'
+          git push origin HEAD:stunning-redesign-v2
