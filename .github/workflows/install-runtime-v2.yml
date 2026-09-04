@@ -67,11 +67,7 @@ jobs:
         shell: bash
         run: |
           if ! grep -q 'STUNNING_V2_LOADER' assets/site.js; then
-            cat >> assets/site.js <<'JS'
-
-/* STUNNING_V2_LOADER */
-(()=>{const s=document.createElement('script');s.src='../assets/v2.js';s.async=false;document.head.appendChild(s)})();
-JS
+            printf '\n/* STUNNING_V2_LOADER */\n(()=>{const s=document.createElement("script");s.src="../assets/v2.js";s.async=false;document.head.appendChild(s)})();\n' >> assets/site.js
           fi
 
       - name: Commit production assets only
