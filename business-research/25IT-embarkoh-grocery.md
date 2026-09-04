@@ -81,24 +81,23 @@ This profile was compiled from the exact Google Maps identity supplied in the ma
 - **Address:** 78H5+2J3 - Al Murar - Dubai - United Arab Emirates
 - **Phone:** +971 4 271 4021
 - **Hours:** Not returned
-- **Google social proof snapshot:** 5.0 from 1 Google review(s) as captured on 2026-09-04.
+- **Google social proof snapshot:** 5.0 from 1 Google review(s) as captured on the research date.
 - **Website finding:** No independent owned website verified in this research pass.
 - **Verified/mentioned digital channels:** No social/booking channel is sufficiently verified in the current research file.
 - **Strongest research finding:** Current Google/BizMidEast agree on phone +971 4 271 4021; the original directory number +971 4 273 0034 appears to be a fax in BizMidEast. HiDubai adds 10 Street/Ghanim Building and operating hours. No independent domain surfaced.
 - **Evidence-backed value-proposition direction:** Proposed evidence-supported positioning: **Embarkoh Grocery — grocery store in Deira, Dubai**, anchored by verified contact/location details. Final marketing wording requires owner approval.
-- **Competitive-context note:** No named competitor comparison is included because the current evidence file does not contain a verified competitor audit. Before implementation, review 3–5 nearby same-category businesses for navigation, CTA and content-pattern benchmarking; do not copy claims, copy or imagery.
-- **Visual-evidence status:** no production-licensed photography has been verified in this research file; all production imagery must be owner-supplied, commissioned or separately licensed.
+- **Competitive-context note:** No named competitor claim is added unless the current research file already supports one. Before implementation, review 3–5 nearby same-category businesses for navigation, CTA and content-pattern benchmarking; do not copy claims, copy or imagery.
+- **Visual-evidence status:** no production-licensed photography is assumed from Maps/review/directory sources; production imagery must be owner-supplied, commissioned or separately licensed.
 
 **Evidence-backed differentiators**
 
 - Exact Google Maps identity in **Deira** with a stable Place ID.
-- Verified third-party menu/ordering presence can support a direct digital conversion path.
 
-**Reputation strategy:** The review sample is very small (1); do not overstate it as proof of broad customer consensus.
+**Reputation strategy:** Use the captured 5.0 / 1-review snapshot cautiously, with date/source attribution if displayed.
 
 ## 2. Audience
 
-Primary: households and convenience shoppers around **Deira**. Secondary: visitors searching for a nearby grocery/supermarket and checking hours, phone and directions. Product assortment should remain owner-supplied rather than inferred.
+Primary: households and convenience shoppers in the surrounding area. Secondary: visitors searching for a nearby grocery/supermarket and checking hours, phone and directions. Product assortment remains owner-supplied rather than inferred.
 
 Treat this as a working audience hypothesis based on category and location, not demographic fact. Validate the highest-value customer segment with the owner before final copy.
 
@@ -118,7 +117,7 @@ Treat this as a working audience hypothesis based on category and location, not 
 
 ## 4. Creative direction
 
-**Friendly neighborhood utility with freshness cues.** Prioritize hours, location and practical discovery. Use real shelves/storefront/product-group photography only after the owner supplies it; avoid fake produce/catalog imagery.
+Friendly neighborhood utility with freshness cues. Prioritize hours, location and practical discovery. Use real shelves/storefront/product-group photography; avoid invented inventory.
 
 Use the research finding as the visual-story anchor: **Current Google/BizMidEast agree on phone +971 4 271 4021; the original directory number +971 4 273 0034 appears to be a fax in BizMidEast. HiDubai adds 10 Street/Ghanim Building and operating hours. No independent domain surfaced.**
 
@@ -137,14 +136,14 @@ Do not assume the palette below matches an existing brand identity; it is a prop
 
 ## 6. Typography
 
-- **Display / headings:** `Manrope` for headings.
-- **Body / UI:** `Inter` for body/UI.
+- **Display / headings:** `Manrope`.
+- **Body / UI:** `Inter`.
 - Limit production to two font families maximum. Prefer self-hosted WOFF2 files under their open-source licenses, with robust system-font fallbacks.
 - Use a compact type scale on mobile and a more editorial scale on larger screens; do not sacrifice legibility for style.
 
 ## 7. Image strategy
 
-**Production priority:** real, current business photography. Recommended shot list:
+**Production priority: real, current business photography. Recommended shot list:**
 
 - Storefront
 - Entrance
@@ -169,18 +168,18 @@ Keep the first release shallow: most local-business users should reach the prima
 
 ## 9. Section-by-section layout
 
-- **Hero:** real storefront/interior image, verified store category, area, hours and directions/call CTA.
-- **What you can find:** owner-approved product/category list only; current research should not be stretched into invented inventory.
-- **Convenience proof:** verified opening hours (especially 24-hour operation where confirmed), location and review footprint.
+- **Hero:** real storefront/interior image, verified category, area, hours and directions/call CTA.
+- **What you can find:** owner-approved product/category list only; do not infer inventory from category.
+- **Convenience proof:** verified opening hours, location and review footprint.
 - **Store gallery:** entrance, aisles, checkout and representative inventory photographed with permission.
-- **Neighborhood location:** map, nearby landmark text only if verified, parking/access notes only if owner confirms them.
+- **Neighborhood location:** map and verified access/landmark details only.
 - **Contact / social:** phone and verified social links.
-- **Final CTA:** get directions first, call second.
+- **Final CTA:** get directions first, call second unless owner data supports another stronger action.
 
 ## 10. Three.js / animation plan
 
 - **Three.js: not recommended for v1.** The current evidence does not reveal a business story that needs WebGL to communicate value, and local-business conversion/performance are more important.
-- Use restrained CSS/WAAPI transitions: short fade/translate on section entry, hover/focus feedback, and optional image reveal effects.
+- Use restrained CSS/WAAPI transitions: short fade/translate on section entry, hover/focus feedback and optional image reveal effects.
 - Respect `prefers-reduced-motion: reduce`; remove nonessential motion and never animate core information off-screen.
 - If a future owner-approved concept genuinely benefits from 3D, treat it as progressive enhancement with a static fallback and strict performance budget.
 
@@ -189,9 +188,9 @@ Keep the first release shallow: most local-business users should reach the prima
 - **Mobile first:** sticky bottom action bar with the top one or two verified actions; do not crowd it with every channel.
 - Hero copy stays short enough that the CTA appears in the first viewport on common phones.
 - Service/menu/product cards stack to one column on small screens, two on tablet and a restrained grid on desktop.
-- Gallery uses touch-friendly swipe/scroll on mobile and a non-janky masonry/grid treatment on larger screens.
+- Gallery uses touch-friendly swipe/scroll on mobile and a non-janky grid treatment on larger screens.
 - Location/contact content uses tap-to-call and a clear external Maps action.
-- Tables such as hours must remain readable without horizontal scrolling.
+- Hours tables remain readable without horizontal scrolling.
 
 ## 12. Accessibility
 
@@ -199,7 +198,7 @@ Keep the first release shallow: most local-business users should reach the prima
 - Semantic landmarks: `header`, `nav`, `main`, meaningful `section` headings, `footer`.
 - Full keyboard navigation with clearly visible focus states.
 - Minimum 44×44 px touch targets for primary mobile controls.
-- Alt text describes the business-relevant content of each image; decorative images use empty alt text.
+- Alt text describes business-relevant image content; decorative images use empty alt text.
 - Forms, if approved later, require explicit labels, error summaries and success states; do not rely on placeholder text.
 - Color is never the only way to communicate status or selection.
 - Reduced-motion behavior is mandatory.
@@ -216,16 +215,16 @@ Keep the first release shallow: most local-business users should reach the prima
 ## 14. SEO / local discovery
 
 - **Proposed title pattern:** `Embarkoh Grocery | Grocery store in Deira, Dubai` (shorten if needed to avoid truncation).
-- **Meta description:** Plan meta-description direction: describe Embarkoh Grocery as the verified grocery store in Deira, include one or two verified service/location facts, and end with the primary contact/directions action. Avoid superlatives.
+- **Meta description direction:** describe Embarkoh Grocery as the verified grocery store in Deira; include one or two verified service/location facts and end with the primary verified action. Avoid superlatives.
 - Keep name, address and phone consistent with the exact Maps listing after a final pre-launch verification.
-- **JSON-LD:** use `GroceryStore` or `ConvenienceStore` matching the verified Maps category; include only verified `name`, `address`, `telephone`, `openingHoursSpecification`, `url`, `sameAs` and geo/map identifiers that are actually available.
+- **JSON-LD:** use `GroceryStore or ConvenienceStore matching the verified Maps category`; include only verified `name`, `address`, `telephone`, `openingHoursSpecification`, `url`, `sameAs` and geo/map identifiers that are actually available.
 - Add canonical URL, Open Graph title/description/image, Twitter card metadata and a rights-cleared social-preview image.
 - Use neighborhood/category language naturally in headings and metadata; do not create doorway pages or keyword-stuffed suburb pages.
 - Link to the exact Google Maps listing for directions. Do not fake reviews or schema ratings.
 
 ## 15. Rights / licensing notes
 
-- Production imagery must be owner-controlled, commissioned, or clearly licensed for commercial website use.
+- Production imagery must be owner-controlled, commissioned or clearly licensed for commercial website use.
 - Directory, Google Maps, social, review and booking-platform images are **not automatically reusable**. Treat them as research references unless rights are documented.
 - Do not copy review text into the site without permission and platform-policy compliance. If aggregate ratings are displayed, label the source/date and follow platform attribution rules.
 - Open-source fonts must retain the applicable license notice in project documentation; self-host only legally redistributable files.
@@ -236,12 +235,12 @@ Keep the first release shallow: most local-business users should reach the prima
 
 1. Re-verify Maps status, NAP, hours, website/social links and primary conversion channel with the owner.
 2. Collect owner-approved service/menu/product information and all production image assets; mark unresolved content explicitly.
-3. Lock the evidence baseline and content model before visual design.
-4. Create mobile-first wireframes and CTA hierarchy; review against the business goal.
-5. Apply the proposed visual system, then validate it against any real brand materials supplied by the owner.
-6. Implement semantic static-first pages, structured data, metadata and responsive images.
-7. Run accessibility, keyboard, reduced-motion, performance, responsive and link/contact QA.
-8. Owner review and factual sign-off. Only then remove demo-only asset flags and launch.
+4. Lock the evidence baseline and content model before visual design.
+5. Create mobile-first wireframes and CTA hierarchy; review against the business goal.
+6. Apply the proposed visual system, then validate it against any real brand materials supplied by the owner.
+7. Implement semantic static-first pages, structured data, metadata and responsive images.
+8. Run accessibility, keyboard, reduced-motion, performance, responsive and link/contact QA.
+9. Owner review and factual sign-off. Only then remove demo-only asset flags and launch.
 
 ## 17. Acceptance criteria
 

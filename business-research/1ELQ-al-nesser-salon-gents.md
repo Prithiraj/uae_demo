@@ -78,25 +78,25 @@ This profile was compiled from the exact Google Maps identity supplied in the ma
 - **Address:** 52 30A St - Umm Suqeim Third - Umm Suqeim 3 - Dubai - United Arab Emirates
 - **Phone:** +971 55 306 1155
 - **Hours:** Tue-Sun mostly 08:30-22:30; Friday 08:30-12:00 and 14:00-22:30; Monday shown 24 hours
-- **Google social proof snapshot:** 4.5 from 29 Google review(s) as captured on 2026-09-04.
+- **Google social proof snapshot:** 4.5 from 29 Google review(s) as captured on the research date.
 - **Website finding:** No independent owned website verified in this research pass.
 - **Verified/mentioned digital channels:** Fresha
 - **Strongest research finding:** Fresha exposes a service footprint broader than a traditional barber (children haircuts, straightening, keratin and women haircuts). The unusual Monday 24-hour Maps entry should be rechecked before using operationally.
-- **Evidence-backed value-proposition direction:** Proposed evidence-supported positioning: **AL NESSER SALON (GENTS) — hair salon in Umm Suqeim 3, Dubai**, anchored by verified contact/location details. Final marketing wording requires owner approval.
-- **Competitive-context note:** No named competitor comparison is included because the current evidence file does not contain a verified competitor audit. Before implementation, review 3–5 nearby same-category businesses for navigation, CTA and content-pattern benchmarking; do not copy claims, copy or imagery.
-- **Visual-evidence status:** no production-licensed photography has been verified in this research file; all production imagery must be owner-supplied, commissioned or separately licensed.
+- **Evidence-backed value-proposition direction:** Proposed evidence-supported positioning: **AL NESSER SALON (GENTS) — hair salon; beauty salon in Umm Suqeim 3, Dubai**, anchored by verified contact/location details. Final marketing wording requires owner approval.
+- **Competitive-context note:** No named competitor claim is added unless the current research file already supports one. Before implementation, review 3–5 nearby same-category businesses for navigation, CTA and content-pattern benchmarking; do not copy claims, copy or imagery.
+- **Visual-evidence status:** no production-licensed photography is assumed from Maps/review/directory sources; production imagery must be owner-supplied, commissioned or separately licensed.
 
 **Evidence-backed differentiators**
 
 - Exact Google Maps identity in **Umm Suqeim 3** with a stable Place ID.
 - Verified 24-hour operation in the captured Maps snapshot.
-- Verified Fresha booking presence gives visitors a concrete online appointment path.
+- Verified third-party digital presence can support a direct conversion path without inventing a new workflow.
 
 **Reputation strategy:** Use the captured 4.5 / 29-review snapshot cautiously, with date/source attribution if displayed.
 
 ## 2. Audience
 
-Primary: local residents and workers around **Umm Suqeim 3** looking for the verified salon/beauty services. Secondary: customers comparing salons on Maps or booking platforms. Treat any age/gender segmentation beyond the verified business positioning as a hypothesis until the owner confirms it.
+Primary: local residents and workers in the surrounding area looking for the verified salon/beauty services. Secondary: customers comparing salons on Maps or verified booking platforms. Treat age, gender and style preferences as hypotheses until the owner confirms them.
 
 Treat this as a working audience hypothesis based on category and location, not demographic fact. Validate the highest-value customer segment with the owner before final copy.
 
@@ -104,7 +104,7 @@ Treat this as a working audience hypothesis based on category and location, not 
 
 **Primary actions**
 
-- **Book appointment** through the verified Fresha profile
+- **Book appointment through the verified booking profile**
 - **Call**
 - **Get directions**
 
@@ -117,7 +117,7 @@ Treat this as a working audience hypothesis based on category and location, not 
 
 ## 4. Creative direction
 
-**Elegant, luminous, editorial and service-led.** Use generous whitespace, close-up texture, real treatment/workspace photography, and refined typography. Avoid generic “luxury salon” clichés unless the actual space supports them.
+Elegant, luminous, editorial and service-led. Use generous whitespace, close-up texture, real workspace/team photography and refined typography. Avoid generic “luxury salon” clichés unless the actual space supports them.
 
 Use the research finding as the visual-story anchor: **Fresha exposes a service footprint broader than a traditional barber (children haircuts, straightening, keratin and women haircuts). The unusual Monday 24-hour Maps entry should be rechecked before using operationally.**
 
@@ -136,14 +136,14 @@ Do not assume the palette below matches an existing brand identity; it is a prop
 
 ## 6. Typography
 
-- **Display / headings:** `Cormorant Garamond` for editorial display.
-- **Body / UI:** `Inter` for UI/body.
+- **Display / headings:** `Cormorant Garamond`.
+- **Body / UI:** `Inter`.
 - Limit production to two font families maximum. Prefer self-hosted WOFF2 files under their open-source licenses, with robust system-font fallbacks.
 - Use a compact type scale on mobile and a more editorial scale on larger screens; do not sacrifice legibility for style.
 
 ## 7. Image strategy
 
-**Production priority:** real, current business photography. Recommended shot list:
+**Production priority: real, current business photography. Recommended shot list:**
 
 - Exterior/storefront
 - Wide interior
@@ -169,19 +169,19 @@ Keep the first release shallow: most local-business users should reach the prima
 
 ## 9. Section-by-section layout
 
-- **Hero:** real salon/barber image, concise evidence-backed positioning, area, and primary CTA(s).
-- **Service overview:** group only verified services; if the current file lacks a full menu, use category-level cards and mark the detailed list as owner-supplied content.
-- **Why choose this business:** evidence-backed strengths such as review footprint, location consistency, booking presence or broad verified service mix.
-- **Real space / team / process:** owner-supplied portraits and interior/work images; no stock “beauty” imagery in production.
+- **Hero:** real salon/barber image, concise evidence-backed positioning, area and primary CTA(s).
+- **Service overview:** group only verified services; if the research file lacks a complete menu, the detailed list remains owner-supplied content.
+- **Why choose this business:** use only evidenced strengths such as review footprint, booking presence, location consistency or verified service breadth.
+- **Real space / team / process:** owner-supplied portraits and interior/work images; no generic stock beauty imagery in production.
 - **Gallery:** 6–12 rights-cleared images with meaningful alt text.
-- **Social proof:** aggregate rating/review count as-of the research date if platform policy permits; otherwise link to the Maps profile without reproducing reviews.
-- **Location / hours / contact:** NAP, opening-hours table, Maps link, and verified social/booking links.
+- **Social proof:** aggregate rating/review count as-of the research date if platform policy permits; otherwise link to Maps without reproducing review text.
+- **Location / hours / contact:** NAP, hours, Maps link and verified social/booking links.
 - **Final CTA:** repeat the primary booking/contact action with a short location reassurance.
 
 ## 10. Three.js / animation plan
 
 - **Three.js: not recommended for v1.** The current evidence does not reveal a business story that needs WebGL to communicate value, and local-business conversion/performance are more important.
-- Use restrained CSS/WAAPI transitions: short fade/translate on section entry, hover/focus feedback, and optional image reveal effects.
+- Use restrained CSS/WAAPI transitions: short fade/translate on section entry, hover/focus feedback and optional image reveal effects.
 - Respect `prefers-reduced-motion: reduce`; remove nonessential motion and never animate core information off-screen.
 - If a future owner-approved concept genuinely benefits from 3D, treat it as progressive enhancement with a static fallback and strict performance budget.
 
@@ -190,9 +190,9 @@ Keep the first release shallow: most local-business users should reach the prima
 - **Mobile first:** sticky bottom action bar with the top one or two verified actions; do not crowd it with every channel.
 - Hero copy stays short enough that the CTA appears in the first viewport on common phones.
 - Service/menu/product cards stack to one column on small screens, two on tablet and a restrained grid on desktop.
-- Gallery uses touch-friendly swipe/scroll on mobile and a non-janky masonry/grid treatment on larger screens.
+- Gallery uses touch-friendly swipe/scroll on mobile and a non-janky grid treatment on larger screens.
 - Location/contact content uses tap-to-call and a clear external Maps action.
-- Tables such as hours must remain readable without horizontal scrolling.
+- Hours tables remain readable without horizontal scrolling.
 
 ## 12. Accessibility
 
@@ -200,7 +200,7 @@ Keep the first release shallow: most local-business users should reach the prima
 - Semantic landmarks: `header`, `nav`, `main`, meaningful `section` headings, `footer`.
 - Full keyboard navigation with clearly visible focus states.
 - Minimum 44×44 px touch targets for primary mobile controls.
-- Alt text describes the business-relevant content of each image; decorative images use empty alt text.
+- Alt text describes business-relevant image content; decorative images use empty alt text.
 - Forms, if approved later, require explicit labels, error summaries and success states; do not rely on placeholder text.
 - Color is never the only way to communicate status or selection.
 - Reduced-motion behavior is mandatory.
@@ -216,17 +216,17 @@ Keep the first release shallow: most local-business users should reach the prima
 
 ## 14. SEO / local discovery
 
-- **Proposed title pattern:** `AL NESSER SALON (GENTS) | Hair salon in Umm Suqeim 3, Dubai` (shorten if needed to avoid truncation).
-- **Meta description:** Plan meta-description direction: describe AL NESSER SALON (GENTS) as the verified hair salon in Umm Suqeim 3, include one or two verified service/location facts, and end with the primary contact/directions action. Avoid superlatives.
+- **Proposed title pattern:** `AL NESSER SALON (GENTS) | Hair salon; Beauty salon in Umm Suqeim 3, Dubai` (shorten if needed to avoid truncation).
+- **Meta description direction:** describe AL NESSER SALON (GENTS) as the verified hair salon; beauty salon in Umm Suqeim 3; include one or two verified service/location facts and end with the primary verified action. Avoid superlatives.
 - Keep name, address and phone consistent with the exact Maps listing after a final pre-launch verification.
-- **JSON-LD:** use `BeautySalon` (or `HairSalon` only where that is the verified primary category); include only verified `name`, `address`, `telephone`, `openingHoursSpecification`, `url`, `sameAs` and geo/map identifiers that are actually available.
+- **JSON-LD:** use `BeautySalon (or HairSalon only where that is the verified primary category)`; include only verified `name`, `address`, `telephone`, `openingHoursSpecification`, `url`, `sameAs` and geo/map identifiers that are actually available.
 - Add canonical URL, Open Graph title/description/image, Twitter card metadata and a rights-cleared social-preview image.
 - Use neighborhood/category language naturally in headings and metadata; do not create doorway pages or keyword-stuffed suburb pages.
 - Link to the exact Google Maps listing for directions. Do not fake reviews or schema ratings.
 
 ## 15. Rights / licensing notes
 
-- Production imagery must be owner-controlled, commissioned, or clearly licensed for commercial website use.
+- Production imagery must be owner-controlled, commissioned or clearly licensed for commercial website use.
 - Directory, Google Maps, social, review and booking-platform images are **not automatically reusable**. Treat them as research references unless rights are documented.
 - Do not copy review text into the site without permission and platform-policy compliance. If aggregate ratings are displayed, label the source/date and follow platform attribution rules.
 - Open-source fonts must retain the applicable license notice in project documentation; self-host only legally redistributable files.
@@ -237,12 +237,12 @@ Keep the first release shallow: most local-business users should reach the prima
 
 1. Re-verify Maps status, NAP, hours, website/social links and primary conversion channel with the owner.
 2. Collect owner-approved service/menu/product information and all production image assets; mark unresolved content explicitly.
-3. Lock the evidence baseline and content model before visual design.
-4. Create mobile-first wireframes and CTA hierarchy; review against the business goal.
-5. Apply the proposed visual system, then validate it against any real brand materials supplied by the owner.
-6. Implement semantic static-first pages, structured data, metadata and responsive images.
-7. Run accessibility, keyboard, reduced-motion, performance, responsive and link/contact QA.
-8. Owner review and factual sign-off. Only then remove demo-only asset flags and launch.
+4. Lock the evidence baseline and content model before visual design.
+5. Create mobile-first wireframes and CTA hierarchy; review against the business goal.
+6. Apply the proposed visual system, then validate it against any real brand materials supplied by the owner.
+7. Implement semantic static-first pages, structured data, metadata and responsive images.
+8. Run accessibility, keyboard, reduced-motion, performance, responsive and link/contact QA.
+9. Owner review and factual sign-off. Only then remove demo-only asset flags and launch.
 
 ## 17. Acceptance criteria
 

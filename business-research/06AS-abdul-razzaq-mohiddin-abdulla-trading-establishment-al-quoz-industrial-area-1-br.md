@@ -82,24 +82,25 @@ This profile was compiled from the exact Google Maps identity supplied in the ma
 - **Address:** Street #18 - Al Qouz Industrial Area 1 - Al Quoz - Dubai - United Arab Emirates
 - **Phone:** +971 4 347 4001
 - **Hours:** Not returned
-- **Google social proof snapshot:** 5.0 from 4 Google review(s) as captured on 2026-09-04.
+- **Google social proof snapshot:** 5.0 from 4 Google review(s) as captured on the research date.
 - **Website finding:** Independent website found. Verified website: https://mab1925.com/
-- **Verified/mentioned digital channels:** No social/booking channel is sufficiently verified in the current research file.
+- **Verified/mentioned digital channels:** LinkedIn company page
 - **Strongest research finding:** This is not a true no-website lead: the company has a mature corporate presence at mab1925.com, LinkedIn describes a 1925 founding and 51-200 employees, and trade directories list a broad tailoring-supplies portfolio.
 - **Evidence-backed value-proposition direction:** Proposed evidence-supported positioning: **Abdul Razzaq Mohiddin Abdulla Trading EST — wholesale market in Al Quoz Industrial Area 1, Dubai**, anchored by verified contact/location details. Final marketing wording requires owner approval.
-- **Competitive-context note:** No named competitor comparison is included because the current evidence file does not contain a verified competitor audit. Before implementation, review 3–5 nearby same-category businesses for navigation, CTA and content-pattern benchmarking; do not copy claims, copy or imagery.
-- **Visual-evidence status:** no production-licensed photography has been verified in this research file; all production imagery must be owner-supplied, commissioned or separately licensed.
+- **Competitive-context note:** No named competitor claim is added unless the current research file already supports one. Before implementation, review 3–5 nearby same-category businesses for navigation, CTA and content-pattern benchmarking; do not copy claims, copy or imagery.
+- **Visual-evidence status:** no production-licensed photography is assumed from Maps/review/directory sources; production imagery must be owner-supplied, commissioned or separately licensed.
 
 **Evidence-backed differentiators**
 
 - Exact Google Maps identity in **Al Quoz Industrial Area 1** with a stable Place ID.
-- An existing independent website is already present; the project should be treated as an upgrade/migration rather than a first website.
+- An existing independent website is already present; this project should be treated as an upgrade/migration rather than a first website.
+- Verified third-party digital presence can support a direct conversion path without inventing a new workflow.
 
-**Reputation strategy:** The review sample is very small (4); do not overstate it as proof of broad customer consensus.
+**Reputation strategy:** Use the captured 5.0 / 4-review snapshot cautiously, with date/source attribution if displayed.
 
 ## 2. Audience
 
-Primary: contractors, workshops, tradespeople and commercial buyers in and around **Al Quoz Industrial Area 1** who need the verified hardware/building-supply/wholesale offer. Secondary: buyers searching exact products or brands once the owner supplies an approved catalog.
+Primary: local customers seeking verified tailoring/embroidery services. Secondary: customers comparing workmanship, location and contact convenience. Garment types, turnaround and alterations must be owner-confirmed.
 
 Treat this as a working audience hypothesis based on category and location, not demographic fact. Validate the highest-value customer segment with the owner before final copy.
 
@@ -119,7 +120,7 @@ Treat this as a working audience hypothesis based on category and location, not 
 
 ## 4. Creative direction
 
-**Industrial, credible and specification-first.** Clear product/category navigation, strong contact routes and warehouse/store photography should outweigh decorative storytelling. Use trust through factual breadth, years/brands only when verified.
+Craft-led, tactile and editorial. Use real fabric, stitching, tools, workspace and finished-work photography. The visual language should communicate precision without inventing heritage or specialties.
 
 Use the research finding as the visual-story anchor: **This is not a true no-website lead: the company has a mature corporate presence at mab1925.com, LinkedIn describes a 1925 founding and 51-200 employees, and trade directories list a broad tailoring-supplies portfolio.**
 
@@ -127,32 +128,32 @@ Do not assume the palette below matches an existing brand identity; it is a prop
 
 ## 5. Color system
 
-- **Industrial white:** `#F4F5F6`
-- **Graphite:** `#1D2328`
-- **Safety amber:** `#D97706`
-- **Steel blue:** `#526773`
-- **Concrete:** `#DDE1E3`
+- **Linen:** `#FAF6EE`
+- **Charcoal:** `#252525`
+- **Burgundy:** `#713A42`
+- **Thread gold:** `#B18A4A`
+- **Stone:** `#D8D0C4`
 
 - Maintain WCAG AA contrast for body text and interactive controls.
 - Use the accent color sparingly for primary CTAs, selected states and small highlights—not as large background fields when contrast suffers.
 
 ## 6. Typography
 
-- **Display / headings:** `IBM Plex Sans` for headings.
-- **Body / UI:** `IBM Plex Sans` for body with `IBM Plex Mono` only for specs/labels.
+- **Display / headings:** `Libre Baskerville`.
+- **Body / UI:** `Inter`.
 - Limit production to two font families maximum. Prefer self-hosted WOFF2 files under their open-source licenses, with robust system-font fallbacks.
 - Use a compact type scale on mobile and a more editorial scale on larger screens; do not sacrifice legibility for style.
 
 ## 7. Image strategy
 
-**Production priority:** real, current business photography. Recommended shot list:
+**Production priority: real, current business photography. Recommended shot list:**
 
-- Storefront/warehouse
-- Shelving/product categories
-- Tools/materials close-up
-- Counter/team
-- Loading/stock context
-- Verified brands/products only
+- Storefront
+- Tailoring workspace
+- Fabric/thread/tools
+- Stitching/process detail
+- Finished work with permission
+- Tailor/team portrait
 
 - Owner-supplied or commissioned photography is the preferred production source.
 - Google Maps, Waze, Yango, directory, review-platform and social imagery may be useful as **research reference only**. Do not ship it commercially unless the owner or photographer can prove the necessary rights.
@@ -162,27 +163,27 @@ Do not assume the palette below matches an existing brand identity; it is a prop
 ## 8. Information architecture
 
 - **Home**
-- **Products / Capabilities**
-- **About / Proof**
+- **Services / Capabilities**
+- **Craft / Process**
 - **Gallery**
-- **Contact / Location**
+- **Visit / Contact**
 
 Keep the first release shallow: most local-business users should reach the primary action within one tap on mobile and without navigating through multiple nested pages.
 
 ## 9. Section-by-section layout
 
-- **Hero:** real business/workspace image, verified category and area, with direct contact/directions CTA.
-- **Product Categories / Capabilities:** publish only categories explicitly supported by research or supplied by the owner; no invented brands, prices, turnaround times or warranties.
-- **Differentiators:** factual proof such as review footprint, years in business, registered-company evidence, known brands or verified capabilities only where the research file supports them.
-- **Real space / process:** actual store, workshop, team, tools, materials or work-in-progress photography with rights.
-- **Gallery / proof:** practical visual evidence instead of decorative stock imagery.
-- **Location / hours / contact:** phone, map, hours, email/WhatsApp/social only where verified.
-- **Final CTA:** direct contact and directions; add a quote/availability form only after owner workflow is confirmed.
+- **Hero:** real craft/workspace image, verified category/location and contact CTA.
+- **Capabilities:** list only verified tailoring/embroidery services or owner-approved additions.
+- **Craft / process:** explain the real workflow only after owner verification.
+- **Differentiators:** evidence such as location consistency, years/brands/materials only where sourced.
+- **Gallery:** actual work and process with customer consent where identifiable.
+- **Location / hours / contact:** exact NAP and Maps.
+- **Final CTA:** call/message/directions; quote or measurement booking only if owner workflow supports it.
 
 ## 10. Three.js / animation plan
 
 - **Three.js: not recommended for v1.** The current evidence does not reveal a business story that needs WebGL to communicate value, and local-business conversion/performance are more important.
-- Use restrained CSS/WAAPI transitions: short fade/translate on section entry, hover/focus feedback, and optional image reveal effects.
+- Use restrained CSS/WAAPI transitions: short fade/translate on section entry, hover/focus feedback and optional image reveal effects.
 - Respect `prefers-reduced-motion: reduce`; remove nonessential motion and never animate core information off-screen.
 - If a future owner-approved concept genuinely benefits from 3D, treat it as progressive enhancement with a static fallback and strict performance budget.
 
@@ -191,9 +192,9 @@ Keep the first release shallow: most local-business users should reach the prima
 - **Mobile first:** sticky bottom action bar with the top one or two verified actions; do not crowd it with every channel.
 - Hero copy stays short enough that the CTA appears in the first viewport on common phones.
 - Service/menu/product cards stack to one column on small screens, two on tablet and a restrained grid on desktop.
-- Gallery uses touch-friendly swipe/scroll on mobile and a non-janky masonry/grid treatment on larger screens.
+- Gallery uses touch-friendly swipe/scroll on mobile and a non-janky grid treatment on larger screens.
 - Location/contact content uses tap-to-call and a clear external Maps action.
-- Tables such as hours must remain readable without horizontal scrolling.
+- Hours tables remain readable without horizontal scrolling.
 
 ## 12. Accessibility
 
@@ -201,7 +202,7 @@ Keep the first release shallow: most local-business users should reach the prima
 - Semantic landmarks: `header`, `nav`, `main`, meaningful `section` headings, `footer`.
 - Full keyboard navigation with clearly visible focus states.
 - Minimum 44×44 px touch targets for primary mobile controls.
-- Alt text describes the business-relevant content of each image; decorative images use empty alt text.
+- Alt text describes business-relevant image content; decorative images use empty alt text.
 - Forms, if approved later, require explicit labels, error summaries and success states; do not rely on placeholder text.
 - Color is never the only way to communicate status or selection.
 - Reduced-motion behavior is mandatory.
@@ -218,16 +219,16 @@ Keep the first release shallow: most local-business users should reach the prima
 ## 14. SEO / local discovery
 
 - **Proposed title pattern:** `Abdul Razzaq Mohiddin Abdulla Trading EST | Wholesale market in Al Quoz Industrial Area 1, Dubai` (shorten if needed to avoid truncation).
-- **Meta description:** Plan meta-description direction: describe Abdul Razzaq Mohiddin Abdulla Trading EST as the verified wholesale market in Al Quoz Industrial Area 1, include one or two verified service/location facts, and end with the primary contact/directions action. Avoid superlatives.
+- **Meta description direction:** describe Abdul Razzaq Mohiddin Abdulla Trading EST as the verified wholesale market in Al Quoz Industrial Area 1; include one or two verified service/location facts and end with the primary verified action. Avoid superlatives.
 - Keep name, address and phone consistent with the exact Maps listing after a final pre-launch verification.
-- **JSON-LD:** use `HardwareStore` where verified; otherwise `LocalBusiness` for wholesale/supplier profiles; include only verified `name`, `address`, `telephone`, `openingHoursSpecification`, `url`, `sameAs` and geo/map identifiers that are actually available.
+- **JSON-LD:** use `LocalBusiness (use a more specific tailoring type only if supported by the chosen schema vocabulary)`; include only verified `name`, `address`, `telephone`, `openingHoursSpecification`, `url`, `sameAs` and geo/map identifiers that are actually available.
 - Add canonical URL, Open Graph title/description/image, Twitter card metadata and a rights-cleared social-preview image.
 - Use neighborhood/category language naturally in headings and metadata; do not create doorway pages or keyword-stuffed suburb pages.
 - Link to the exact Google Maps listing for directions. Do not fake reviews or schema ratings. Preserve the existing domain `https://mab1925.com/` where appropriate; crawl current indexed URLs and plan 301 redirects before any redesign/migration.
 
 ## 15. Rights / licensing notes
 
-- Production imagery must be owner-controlled, commissioned, or clearly licensed for commercial website use.
+- Production imagery must be owner-controlled, commissioned or clearly licensed for commercial website use.
 - Directory, Google Maps, social, review and booking-platform images are **not automatically reusable**. Treat them as research references unless rights are documented.
 - Do not copy review text into the site without permission and platform-policy compliance. If aggregate ratings are displayed, label the source/date and follow platform attribution rules.
 - Open-source fonts must retain the applicable license notice in project documentation; self-host only legally redistributable files.
@@ -248,7 +249,6 @@ Keep the first release shallow: most local-business users should reach the prima
 
 ## 17. Acceptance criteria
 
-- [ ] Existing-site migration preserves or intentionally redirects important public URLs; no verified business content is lost accidentally.
 - [ ] Every factual business claim can be traced to the evidence above or to a new owner-approved source.
 - [ ] No invented price, service, product, policy, opening hour, testimonial, warranty, delivery/pickup promise or turnaround time appears anywhere.
 - [ ] Primary CTA(s) are obvious in the first mobile viewport and repeated near the end of the page.
@@ -260,6 +260,7 @@ Keep the first release shallow: most local-business users should reach the prima
 - [ ] SEO title, meta description, canonical, Open Graph and appropriate JSON-LD are present and evidence-backed.
 - [ ] No copied third-party review text or unlicensed platform imagery ships to production.
 - [ ] Owner approves the content, visual direction and conversion flow before implementation moves to launch.
+- [ ] Existing-site migration preserves or intentionally redirects important public URLs; no verified business content is lost accidentally.
 
 **Approval checkpoint:** this file now contains the complete design plan for `06AS` / **Abdul Razzaq Mohiddin Abdulla Trading EST**. **Do not implement until the plan and current business facts are approved.**
 
