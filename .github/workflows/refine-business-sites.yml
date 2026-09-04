@@ -23,14 +23,18 @@ jobs:
           from pathlib import Path
           p = Path('site-builder/build_sites.py')
           s = p.read_text(encoding='utf-8')
-          s = s.replace(
-              "return f'{c} in {area}. This prototype keeps the verified phone, location, hours and public listing context easy to find.'",
-              "return f'{c} in {area}. Verified phone, location, hours and public listing context are kept easy to find.'"
-          )
-          s = s.replace(
-              'This image comes from a public business/listing source and is used only for this prototype.',
-              'This image comes from a public business/listing source and is used for demo/editorial context on this site.'
-          )
+          replacements = {
+              "return f'{c} in {area}. This prototype keeps the verified phone, location, hours and public listing context easy to find.'": "return f'{c} in {area}. Verified phone, location, hours and public listing context are kept easy to find.'",
+              'This image comes from a public business/listing source and is used only for this prototype.': 'This image comes from a public business/listing source and is used for demo/editorial context on this site.',
+              'Where a menu or price is not verified, this prototype does not invent one.': 'Where a menu or price is not verified, this site does not invent one.',
+              'Google Maps is used as the stable identity anchor for this prototype.': 'Google Maps is used as the stable identity anchor for these details.',
+              '<p class="eyebrow">Prototype provenance</p><h2>Evidence-first by design.</h2>': '<p class="eyebrow">Verified information</p><h2>Sources & image notes.</h2>',
+              '<p>This site is an implementation prototype built from public research dated <strong>4 September 2026</strong>. It intentionally does not invent prices, policies, services, inventory, testimonials or booking workflows.</p>': '<p>Key public details on this page are based on research dated <strong>4 September 2026</strong>. Prices, policies, inventory, testimonials and booking workflows are omitted unless verified.</p>',
+              "<footer><span>{esc(name)} · Prototype {esc(r['code'])}</span>": "<footer><span>{esc(name)} · {esc(r['code'])}</span>"
+          }
+          for old, new in replacements.items():
+              s = s.replace(old, new)
+
           extras = {
               '2ZSW': {'url': 'https://i0.wp.com/ravenousxerxes.com/wp-content/uploads/2019/11/img_20191103_125500.jpg?resize=1088%2C1451&ssl=1', 'source': 'https://ravenousxerxes.com/2019/11/03/kaiseki-zen-cafeteria-international-city/', 'alt': 'Kaiseki Zen Cafeteria former storefront in International City', 'scope': 'exact'},
               'A37N': {'url': 'https://wl-img-prd.s3-accelerate.amazonaws.com/564ecad2-9d9d-41c1-b5dd-dc30905cf621-h.jpeg', 'source': 'https://www.hidubai.com/businesses/rimal-gents-salon-beauty-wellness-health-beauty-salons-enpark-meaisem-1-dubai-2', 'alt': 'Rimal Gents Salon storefront and interior', 'scope': 'exact'},
@@ -93,12 +97,12 @@ jobs:
               if needle not in text:
                   raise SystemExit(f'{code} missing expected content: {needle}')
 
-          stale_patterns = [r'Prototype provenance', r'This prototype keeps', r'· Prototype [A-Z0-9]{4}']
+          stale_patterns = [r'Prototype provenance', r'This prototype keeps', r'implementation prototype', r'for this prototype', r'· Prototype [A-Z0-9]{4}']
           stale = []
           for code in codes:
               text = (root/code/'index.html').read_text(encoding='utf-8')
               for pat in stale_patterns:
-                  if re.search(pat, text):
+                  if re.search(pat, text, re.I):
                       stale.append((code, pat))
           if stale:
               raise SystemExit(f'Stale prototype wording remains: {stale[:10]}')
