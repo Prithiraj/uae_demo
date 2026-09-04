@@ -1,0 +1,108 @@
+name: Refine business microsites
+
+on:
+  push:
+    branches: [implement-business-sites]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: implement-business-sites
+          fetch-depth: 0
+
+      - name: Apply evidence and photo refinements
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('site-builder/build_sites.py')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace(
+              "return f'{c} in {area}. This prototype keeps the verified phone, location, hours and public listing context easy to find.'",
+              "return f'{c} in {area}. Verified phone, location, hours and public listing context are kept easy to find.'"
+          )
+          s = s.replace(
+              'This image comes from a public business/listing source and is used only for this prototype.',
+              'This image comes from a public business/listing source and is used for demo/editorial context on this site.'
+          )
+          extras = {
+              '2ZSW': {
+                  'url': 'https://i0.wp.com/ravenousxerxes.com/wp-content/uploads/2019/11/img_20191103_125500.jpg?resize=1088%2C1451&ssl=1',
+                  'source': 'https://ravenousxerxes.com/2019/11/03/kaiseki-zen-cafeteria-international-city/',
+                  'alt': 'Kaiseki Zen Cafeteria former storefront in International City',
+                  'scope': 'exact'
+              },
+              'A37N': {
+                  'url': 'https://wl-img-prd.s3-accelerate.amazonaws.com/564ecad2-9d9d-41c1-b5dd-dc30905cf621-h.jpeg',
+                  'source': 'https://www.hidubai.com/businesses/rimal-gents-salon-beauty-wellness-health-beauty-salons-enpark-meaisem-1-dubai-2',
+                  'alt': 'Rimal Gents Salon storefront and interior',
+                  'scope': 'exact'
+              },
+              'B40O': {
+                  'url': 'https://wl-img-prd.s3-accelerate.amazonaws.com/d10ec26e-498f-4952-a47b-0436ec01bff9-h.jpeg',
+                  'source': 'https://www.hidubai.com/businesses/capizone-hair-spa-center-beauty-wellness-health-beauty-salons-al-quoz-1-dubai-2',
+                  'alt': 'Capizone Hair Spa storefront entrance',
+                  'scope': 'exact'
+              },
+              'GP4A': {
+                  'url': 'https://lh3.googleusercontent.com/j-FC3Oe9Yib5XbgGd9eENqx6FIXiv4Ks1NV0soSdFzZKoCprWALWCxbLk39OWkqZhNhYv5meV9MGJarWpa5WBoIcvvh00VGUQb0h_A-PVw%3Dw1600-rw',
+                  'source': 'https://magicpin.com/uae/Dubai/Naif/Home-Improvement/Madeenat-Al-Eman-Laundry/store/1a32729',
+                  'alt': 'Madeenat Al Eman Laundry garment care service photo',
+                  'scope': 'exact'
+              },
+              'MA03': {
+                  'url': 'https://dubaidirectory.com/custom/domain_1/image_files/sitemgr_photo_311468.jpeg',
+                  'source': 'https://dubaidirectory.com/companies/055-mobile-phones.html',
+                  'alt': '055 Mobile Phones storefront on 6 Street in Al Murar',
+                  'scope': 'exact'
+              }
+          }
+          marker = '\nSTATUS_NOTES ='
+          if "PHOTO_MAP.update({'2ZSW':" not in s:
+              if marker not in s:
+                  raise SystemExit('PHOTO_MAP insertion marker missing')
+              s = s.replace(marker, '\nPHOTO_MAP.update(' + repr(extras) + ')\n' + marker, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Generate all 51 microsites
+        run: python site-builder/build_sites.py
+
+      - name: Validate generated output
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find business-research -maxdepth 1 -name '*.md' | wc -l)" -eq 51
+          test "$(find . -mindepth 2 -maxdepth 2 -name index.html | wc -l)" -eq 51
+          test -f index.html
+          test -f 404.html
+          test -f .nojekyll
+          test -f assets/site.css
+          test -f assets/site.js
+          grep -q '055 Mobile Phones storefront' MA03/index.html
+          grep -q 'Rimal Gents Salon storefront' A37N/index.html
+          grep -q 'Kaiseki Zen Cafeteria former storefront' 2ZSW/index.html
+          grep -q 'Verified information' XF68/index.html
+          if grep -R -E 'Prototype provenance|This prototype keeps|· Prototype [A-Z0-9]{4}' -- */index.html; then
+            echo 'Stale prototype wording remains' >&2
+            exit 1
+          fi
+
+      - name: Commit refined sites
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add site-builder/build_sites.py .nojekyll 404.html index.html assets/ -- */index.html
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+          else
+            git commit -m 'Refine 51 business microsites with verified imagery'
+            git push origin HEAD:implement-business-sites
+          fi
