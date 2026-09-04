@@ -32,36 +32,11 @@ jobs:
               'This image comes from a public business/listing source and is used for demo/editorial context on this site.'
           )
           extras = {
-              '2ZSW': {
-                  'url': 'https://i0.wp.com/ravenousxerxes.com/wp-content/uploads/2019/11/img_20191103_125500.jpg?resize=1088%2C1451&ssl=1',
-                  'source': 'https://ravenousxerxes.com/2019/11/03/kaiseki-zen-cafeteria-international-city/',
-                  'alt': 'Kaiseki Zen Cafeteria former storefront in International City',
-                  'scope': 'exact'
-              },
-              'A37N': {
-                  'url': 'https://wl-img-prd.s3-accelerate.amazonaws.com/564ecad2-9d9d-41c1-b5dd-dc30905cf621-h.jpeg',
-                  'source': 'https://www.hidubai.com/businesses/rimal-gents-salon-beauty-wellness-health-beauty-salons-enpark-meaisem-1-dubai-2',
-                  'alt': 'Rimal Gents Salon storefront and interior',
-                  'scope': 'exact'
-              },
-              'B40O': {
-                  'url': 'https://wl-img-prd.s3-accelerate.amazonaws.com/d10ec26e-498f-4952-a47b-0436ec01bff9-h.jpeg',
-                  'source': 'https://www.hidubai.com/businesses/capizone-hair-spa-center-beauty-wellness-health-beauty-salons-al-quoz-1-dubai-2',
-                  'alt': 'Capizone Hair Spa storefront entrance',
-                  'scope': 'exact'
-              },
-              'GP4A': {
-                  'url': 'https://lh3.googleusercontent.com/j-FC3Oe9Yib5XbgGd9eENqx6FIXiv4Ks1NV0soSdFzZKoCprWALWCxbLk39OWkqZhNhYv5meV9MGJarWpa5WBoIcvvh00VGUQb0h_A-PVw%3Dw1600-rw',
-                  'source': 'https://magicpin.com/uae/Dubai/Naif/Home-Improvement/Madeenat-Al-Eman-Laundry/store/1a32729',
-                  'alt': 'Madeenat Al Eman Laundry garment care service photo',
-                  'scope': 'exact'
-              },
-              'MA03': {
-                  'url': 'https://dubaidirectory.com/custom/domain_1/image_files/sitemgr_photo_311468.jpeg',
-                  'source': 'https://dubaidirectory.com/companies/055-mobile-phones.html',
-                  'alt': '055 Mobile Phones storefront on 6 Street in Al Murar',
-                  'scope': 'exact'
-              }
+              '2ZSW': {'url': 'https://i0.wp.com/ravenousxerxes.com/wp-content/uploads/2019/11/img_20191103_125500.jpg?resize=1088%2C1451&ssl=1', 'source': 'https://ravenousxerxes.com/2019/11/03/kaiseki-zen-cafeteria-international-city/', 'alt': 'Kaiseki Zen Cafeteria former storefront in International City', 'scope': 'exact'},
+              'A37N': {'url': 'https://wl-img-prd.s3-accelerate.amazonaws.com/564ecad2-9d9d-41c1-b5dd-dc30905cf621-h.jpeg', 'source': 'https://www.hidubai.com/businesses/rimal-gents-salon-beauty-wellness-health-beauty-salons-enpark-meaisem-1-dubai-2', 'alt': 'Rimal Gents Salon storefront and interior', 'scope': 'exact'},
+              'B40O': {'url': 'https://wl-img-prd.s3-accelerate.amazonaws.com/d10ec26e-498f-4952-a47b-0436ec01bff9-h.jpeg', 'source': 'https://www.hidubai.com/businesses/capizone-hair-spa-center-beauty-wellness-health-beauty-salons-al-quoz-1-dubai-2', 'alt': 'Capizone Hair Spa storefront entrance', 'scope': 'exact'},
+              'GP4A': {'url': 'https://lh3.googleusercontent.com/j-FC3Oe9Yib5XbgGd9eENqx6FIXiv4Ks1NV0soSdFzZKoCprWALWCxbLk39OWkqZhNhYv5meV9MGJarWpa5WBoIcvvh00VGUQb0h_A-PVw%3Dw1600-rw', 'source': 'https://magicpin.com/uae/Dubai/Naif/Home-Improvement/Madeenat-Al-Eman-Laundry/store/1a32729', 'alt': 'Madeenat Al Eman Laundry garment care service photo', 'scope': 'exact'},
+              'MA03': {'url': 'https://dubaidirectory.com/custom/domain_1/image_files/sitemgr_photo_311468.jpeg', 'source': 'https://dubaidirectory.com/companies/055-mobile-phones.html', 'alt': '055 Mobile Phones storefront on 6 Street in Al Murar', 'scope': 'exact'}
           }
           marker = '\nSTATUS_NOTES ='
           if "PHOTO_MAP.update({'2ZSW':" not in s:
@@ -75,24 +50,61 @@ jobs:
         run: python site-builder/build_sites.py
 
       - name: Validate generated output
-        shell: bash
         run: |
-          set -euo pipefail
-          test "$(find business-research -maxdepth 1 -name '*.md' | wc -l)" -eq 51
-          test "$(find . -mindepth 2 -maxdepth 2 -name index.html | wc -l)" -eq 51
-          test -f index.html
-          test -f 404.html
-          test -f .nojekyll
-          test -f assets/site.css
-          test -f assets/site.js
-          grep -q '055 Mobile Phones storefront' MA03/index.html
-          grep -q 'Rimal Gents Salon storefront' A37N/index.html
-          grep -q 'Kaiseki Zen Cafeteria former storefront' 2ZSW/index.html
-          grep -q 'Verified information' XF68/index.html
-          if grep -R -E 'Prototype provenance|This prototype keeps|· Prototype [A-Z0-9]{4}' -- */index.html; then
-            echo 'Stale prototype wording remains' >&2
-            exit 1
-          fi
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          md_files = sorted((root / 'business-research').glob('*.md'))
+          codes = []
+          for p in md_files:
+              m = re.search(r'unique_code: "([^"]+)"', p.read_text(encoding='utf-8'))
+              if not m:
+                  raise SystemExit(f'Missing unique_code in {p}')
+              codes.append(m.group(1))
+
+          if len(md_files) != 51:
+              raise SystemExit(f'Expected 51 research files; found {len(md_files)}')
+          if len(set(codes)) != 51:
+              raise SystemExit('Research unique codes are not unique')
+
+          missing = [c for c in codes if not (root / c / 'index.html').is_file()]
+          if missing:
+              raise SystemExit(f'Missing generated routes: {missing}')
+
+          extras = [p.parent.name for p in root.glob('*/index.html') if p.parent.name not in set(codes)]
+          if extras:
+              raise SystemExit(f'Unexpected code routes: {extras}')
+
+          required = [root/'index.html', root/'404.html', root/'.nojekyll', root/'assets/site.css', root/'assets/site.js']
+          absent = [str(p) for p in required if not p.exists()]
+          if absent:
+              raise SystemExit(f'Missing shared files: {absent}')
+
+          checks = {
+              'MA03': '055 Mobile Phones storefront',
+              'A37N': 'Rimal Gents Salon storefront',
+              '2ZSW': 'Kaiseki Zen Cafeteria former storefront',
+              'XF68': 'Verified information'
+          }
+          for code, needle in checks.items():
+              text = (root/code/'index.html').read_text(encoding='utf-8')
+              if needle not in text:
+                  raise SystemExit(f'{code} missing expected content: {needle}')
+
+          stale_patterns = [r'Prototype provenance', r'This prototype keeps', r'· Prototype [A-Z0-9]{4}']
+          stale = []
+          for code in codes:
+              text = (root/code/'index.html').read_text(encoding='utf-8')
+              for pat in stale_patterns:
+                  if re.search(pat, text):
+                      stale.append((code, pat))
+          if stale:
+              raise SystemExit(f'Stale prototype wording remains: {stale[:10]}')
+
+          print(f'Validated {len(codes)} business routes; all shared assets and refinement checks passed.')
+          PY
 
       - name: Commit refined sites
         shell: bash
