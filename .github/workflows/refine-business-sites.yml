@@ -27,10 +27,15 @@ jobs:
               "return f'{c} in {area}. This prototype keeps the verified phone, location, hours and public listing context easy to find.'": "return f'{c} in {area}. Verified phone, location, hours and public listing context are kept easy to find.'",
               'This image comes from a public business/listing source and is used only for this prototype.': 'This image comes from a public business/listing source and is used for demo/editorial context on this site.',
               'Where a menu or price is not verified, this prototype does not invent one.': 'Where a menu or price is not verified, this site does not invent one.',
+              'This prototype only names services supported by public evidence.': 'Only services supported by public evidence are named here.',
+              'This is an archival prototype, not an active conversion page.': 'This is an archival reference page, not an active conversion page.',
               'Google Maps is used as the stable identity anchor for this prototype.': 'Google Maps is used as the stable identity anchor for these details.',
               '<p class="eyebrow">Prototype provenance</p><h2>Evidence-first by design.</h2>': '<p class="eyebrow">Verified information</p><h2>Sources & image notes.</h2>',
               '<p>This site is an implementation prototype built from public research dated <strong>4 September 2026</strong>. It intentionally does not invent prices, policies, services, inventory, testimonials or booking workflows.</p>': '<p>Key public details on this page are based on research dated <strong>4 September 2026</strong>. Prices, policies, inventory, testimonials and booking workflows are omitted unless verified.</p>',
-              "<footer><span>{esc(name)} · Prototype {esc(r['code'])}</span>": "<footer><span>{esc(name)} · {esc(r['code'])}</span>"
+              "<footer><span>{esc(name)} · Prototype {esc(r['code'])}</span>": "<footer><span>{esc(name)} · {esc(r['code'])}</span>",
+              '<title>UAE business prototypes</title>': '<title>Dubai local business directory</title>',
+              '<meta name="description" content="51 evidence-backed Dubai business website prototypes.">': '<meta name="description" content="51 evidence-backed Dubai local business microsites.">',
+              '<h1>Business website prototypes.</h1>': '<h1>Dubai local business directory.</h1>'
           }
           for old, new in replacements.items():
               s = s.replace(old, new)
@@ -97,17 +102,12 @@ jobs:
               if needle not in text:
                   raise SystemExit(f'{code} missing expected content: {needle}')
 
-          stale_patterns = [r'Prototype provenance', r'This prototype keeps', r'implementation prototype', r'for this prototype', r'· Prototype [A-Z0-9]{4}']
-          stale = []
-          for code in codes:
-              text = (root/code/'index.html').read_text(encoding='utf-8')
-              for pat in stale_patterns:
-                  if re.search(pat, text, re.I):
-                      stale.append((code, pat))
+          public_html = [root/'index.html', root/'404.html'] + [root/c/'index.html' for c in codes]
+          stale = [str(p) for p in public_html if re.search(r'prototype', p.read_text(encoding='utf-8'), re.I)]
           if stale:
-              raise SystemExit(f'Stale prototype wording remains: {stale[:10]}')
+              raise SystemExit(f'Legacy prototype wording remains in public HTML: {stale}')
 
-          print(f'Validated {len(codes)} business routes; all shared assets and refinement checks passed.')
+          print(f'Validated {len(codes)} business routes; all shared assets, imagery checks and public-copy checks passed.')
           PY
 
       - name: Commit refined sites
@@ -119,6 +119,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No generated changes to commit.'
           else
-            git commit -m 'Refine 51 business microsites with verified imagery'
+            git commit -m 'Finalize 51 business microsites for public hosting'
             git push origin HEAD:implement-business-sites
           fi
