@@ -213,11 +213,11 @@ def render(r):
       'laundry':'This page prioritizes reliable contact, location and opening information over unverified turnaround or pricing promises.',
       'food':'Food pages should earn appetite with real photography and real menu facts. Where a menu or price is not verified, this site does not invent one.',
       'grocery':'For a neighborhood store, usefulness wins: location, hours and contact come before decorative marketing copy.',
-      'tailor':'Craft is best shown through real garments, fabric and process photography. This prototype only names services supported by public evidence.',
+      'tailor':'Craft is best shown through real garments, fabric and process photography. Only services supported by public evidence are named here.',
       'industrial':'Trade customers need specificity and fast contact. This layout treats the page more like a clear product/service sheet than a lifestyle campaign.',
       'auto':'Workshop trust comes from real repair context, transparent contact details and clear location—not oversized animation.',
       'electronics':'A focused retail page: store identity, location, contact and verified product category without invented inventory.',
-      'closed':'This is an archival prototype, not an active conversion page. The closure flag is intentionally the most prominent content.'
+      'closed':'This is an archival reference page, not an active conversion page. The closure flag is intentionally the most prominent content.'
     }[tkey]
 
     return f'''<!doctype html>
@@ -306,7 +306,7 @@ JS = r'''document.documentElement.classList.add('js');const reduce=matchMedia('(
 
 def root_index(records):
     cards=''.join(f'''<a class="directory-card" href="./{esc(r['code'])}/"><span>{esc(r['code'])}</span><strong>{esc(r.get('maps_name') or r['name'])}</strong><small>{esc(r.get('area'))} · {esc(r.get('category'))}</small></a>''' for r in records)
-    return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UAE business prototypes</title><meta name="description" content="51 evidence-backed Dubai business website prototypes."><style>body{{margin:0;background:#111;color:#eee;font-family:system-ui,sans-serif}}main{{padding:8vw 5vw}}h1{{font:500 clamp(3rem,8vw,8rem)/.9 Georgia,serif;max-width:10ch}}p{{color:#aaa;max-width:55ch}}.grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:#333;border:1px solid #333;margin-top:4rem}}.directory-card{{background:#171717;color:inherit;padding:1.4rem;text-decoration:none;min-height:160px;display:flex;flex-direction:column;gap:.6rem}}.directory-card:hover{{background:#202020}}.directory-card span{{font:700 .7rem ui-monospace,monospace;color:#e0a96d}}.directory-card strong{{font-size:1.05rem}}.directory-card small{{color:#999;margin-top:auto}}</style></head><body><main><p>Prithiraj · UAE demo</p><h1>Business website prototypes.</h1><p>51 static microsites built from exact-place research. Photography is only used when business-specific imagery could be verified; all third-party images are marked as demo/editorial.</p><div class="grid">{cards}</div></main></body></html>'''
+    return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dubai local business directory</title><meta name="description" content="51 evidence-backed Dubai local business microsites."><style>body{{margin:0;background:#111;color:#eee;font-family:system-ui,sans-serif}}main{{padding:8vw 5vw}}h1{{font:500 clamp(3rem,8vw,8rem)/.9 Georgia,serif;max-width:10ch}}p{{color:#aaa;max-width:55ch}}.grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:#333;border:1px solid #333;margin-top:4rem}}.directory-card{{background:#171717;color:inherit;padding:1.4rem;text-decoration:none;min-height:160px;display:flex;flex-direction:column;gap:.6rem}}.directory-card:hover{{background:#202020}}.directory-card span{{font:700 .7rem ui-monospace,monospace;color:#e0a96d}}.directory-card strong{{font-size:1.05rem}}.directory-card small{{color:#999;margin-top:auto}}</style></head><body><main><p>Prithiraj · UAE demo</p><h1>Dubai local business directory.</h1><p>51 static microsites built from exact-place research. Photography is only used when business-specific imagery could be verified; all third-party images are marked as demo/editorial.</p><div class="grid">{cards}</div></main></body></html>'''
 
 def build():
     records=load_records()
