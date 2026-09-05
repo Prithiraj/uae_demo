@@ -1,0 +1,67 @@
+name: Refine stunning V3 microsites
+
+on:
+  push:
+    branches: [stunning-redesign-v3]
+    paths: ['.github/workflows/refine-stunning-v3.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: stunning-redesign-v3
+          fetch-depth: 0
+      - name: Patch renderer quality details
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('site-builder/build_sites_v3.py')
+          s=p.read_text(encoding='utf-8')
+          old="""def visual(r, cls='', variant=0, eager=False):\n    if r['photo']:\n        u,src,alt,scope=r['photo']; note='Related Dubai branch image' if scope=='branch' else 'Public business/listing image'\n        return f'''<figure class=\"media {cls}\"><img src=\"{esc(u)}\" alt=\"{esc(alt)}\" {'fetchpriority=\"high\"' if eager else 'loading=\"lazy\"'} decoding=\"async\" referrerpolicy=\"no-referrer\"><figcaption>{esc(note)} · demo/editorial · <a href=\"{esc(src)}\" target=\"_blank\" rel=\"noopener\">source ↗</a></figcaption></figure>'''\n    return f'''<figure class=\"media concept {cls}\">{art_svg(r,variant)}<figcaption>Generated concept artwork for art direction — explicitly not business photography.</figcaption></figure>'''\n"""
+          new="""def visual(r, cls='', variant=0, eager=False):\n    # Use the verified/business-associated photograph as the documentary anchor.\n    # Secondary visual slots deliberately switch to clearly labelled concept art\n    # instead of repeating a single photograph as if multiple images existed.\n    if r['photo'] and variant == 0:\n        u,src,alt,scope=r['photo']; note='Related Dubai branch image' if scope=='branch' else 'Public business/listing image'\n        return f'''<figure class=\"media {cls}\"><img src=\"{esc(u)}\" alt=\"{esc(alt)}\" {'fetchpriority=\"high\"' if eager else 'loading=\"lazy\"'} decoding=\"async\" referrerpolicy=\"no-referrer\"><figcaption>{esc(note)} · demo/editorial · <a href=\"{esc(src)}\" target=\"_blank\" rel=\"noopener\">source ↗</a></figcaption></figure>'''\n    return f'''<figure class=\"media concept {cls}\">{art_svg(r,variant)}<figcaption>Generated concept artwork for art direction — explicitly not business photography.</figcaption></figure>'''\n"""
+          if old not in s: raise SystemExit('visual() patch target not found')
+          s=s.replace(old,new,1)
+          old2="""    if not closed and r['website']: a.append(('Official website',r['website'],'quiet'))\n"""
+          new2="""    if not closed and r['website']:\n        wl=r['website'].lower()\n        if 'facebook.com' in wl: label='Facebook'\n        elif 'instagram.com' in wl: label='Instagram'\n        elif 'fresha.com' in wl: label='Booking'\n        else: label='Official website'\n        a.append((label,r['website'],'quiet'))\n"""
+          if old2 not in s: raise SystemExit('CTA label patch target not found')
+          s=s.replace(old2,new2,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Rebuild sites
+        run: python site-builder/build_sites_v3.py
+      - name: Validate final visual rules
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          profiles=list(Path('business-research').glob('*.md'))
+          codes=[]
+          for p in profiles:
+              m=re.search(r'unique_code: "([^"]+)"',p.read_text(encoding='utf-8')); codes.append(m.group(1))
+          if len(codes)!=51: raise SystemExit('route count')
+          for c in codes:
+              t=(Path(c)/'index.html').read_text(encoding='utf-8')
+              if '../assets/v3.css' not in t: raise SystemExit(c+' missing v3 css')
+          g=(Path('GAX6')/'index.html').read_text(encoding='utf-8')
+          if 'Official website' in g and 'facebook.com' in g: raise SystemExit('Facebook mislabeled as website')
+          z=(Path('XF68')/'index.html').read_text(encoding='utf-8')
+          if z.count('Zaina Secrets Beauty Salon business listing photo') != 1: raise SystemExit('Zaina documentary image should appear once')
+          if z.count('CONCEPT ARTWORK · NOT A BUSINESS PHOTO') < 2: raise SystemExit('Zaina collage should use concept companions')
+          print('Final visual quality rules passed')
+          PY
+      - name: Commit refined V3 output
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add site-builder/build_sites_v3.py index.html 404.html assets/v3.css assets/v3.js -- */index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refine V3 imagery and social CTA labeling'
+            git push origin HEAD:stunning-redesign-v3
+          fi
