@@ -136,7 +136,10 @@ def art_svg(r,variant=0):
     return f'''<svg class="concept-svg" viewBox="0 0 1000 1200" role="img" aria-label="Concept artwork for {esc(r['name'])}; not a business photograph"><defs><linearGradient id="g{r['code']}{variant}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{accent}"/><stop offset="1" stop-color="{accent2}"/></linearGradient></defs><rect width="1000" height="1200" fill="url(#g{r['code']}{variant})"/><g color="#fff">{''.join(base)}</g>{motif}<text x="70" y="150" fill="#fff" opacity=".9" font-size="38" font-family="ui-monospace,monospace" letter-spacing="8">{r['code']}</text><text x="70" y="1080" fill="#fff" opacity=".95" font-size="170" font-family="Georgia,serif">{glyph}</text><text x="70" y="1140" fill="#fff" opacity=".8" font-size="26" font-family="Arial,sans-serif">CONCEPT ARTWORK · NOT A BUSINESS PHOTO</text></svg>'''
 
 def visual(r, cls='', variant=0, eager=False):
-    if r['photo']:
+    # Use the verified/business-associated photograph as the documentary anchor.
+    # Secondary visual slots deliberately switch to clearly labelled concept art
+    # instead of repeating a single photograph as if multiple images existed.
+    if r['photo'] and variant == 0:
         u,src,alt,scope=r['photo']; note='Related Dubai branch image' if scope=='branch' else 'Public business/listing image'
         return f'''<figure class="media {cls}"><img src="{esc(u)}" alt="{esc(alt)}" {'fetchpriority="high"' if eager else 'loading="lazy"'} decoding="async" referrerpolicy="no-referrer"><figcaption>{esc(note)} · demo/editorial · <a href="{esc(src)}" target="_blank" rel="noopener">source ↗</a></figcaption></figure>'''
     return f'''<figure class="media concept {cls}">{art_svg(r,variant)}<figcaption>Generated concept artwork for art direction — explicitly not business photography.</figcaption></figure>'''
@@ -186,7 +189,13 @@ def ctas(r):
     closed='closed' in r['status'].lower(); a=[]
     if not closed and r['phone']: a.append(('Call',phone_href(r['phone']),'primary'))
     if r['maps']: a.append(('Directions' if not closed else 'Check current listing',r['maps'],'secondary'))
-    if not closed and r['website']: a.append(('Official website',r['website'],'quiet'))
+    if not closed and r['website']:
+        wl=r['website'].lower()
+        if 'facebook.com' in wl: label='Facebook'
+        elif 'instagram.com' in wl: label='Instagram'
+        elif 'fresha.com' in wl: label='Booking'
+        else: label='Official website'
+        a.append((label,r['website'],'quiet'))
     for _,url,_ in r['sources']:
         if not closed and ('fresha' in url.lower() or 'ubereats' in url.lower()): a.append(('Book / order',url,'quiet')); break
     return a[:3]
